@@ -19,7 +19,10 @@ jobs:
         run: date
       - name: Checkout repository
         uses: actions/checkout@v3
-      - name: Pull Docker image
-        run: docker pull ${{ secrets.DOCKER_IMAGE }}
-      - name: Run Docker container        
-        run: docker run ${{ secrets.DOCKER_IMAGE }}
+      - name: app
+        run: |
+        chmod +x entrypoint.sh
+
+    -   name: app run
+        run: |
+        bash entrypoint.sh
