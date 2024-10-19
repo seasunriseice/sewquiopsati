@@ -9,7 +9,7 @@ jobs:
  build:
 
     runs-on: ubuntu-latest
-    timeout-minutes: 150
+    timeout-minutes: 280
     
     permissions:
       contents: read
