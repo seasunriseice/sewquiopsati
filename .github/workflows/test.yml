@@ -1,1 +1,25 @@
+name: test
 
+on:
+  schedule:
+    - cron: '40 18 * * *'
+  workflow_dispatch:
+
+jobs:
+ build:
+
+    runs-on: ubuntu-latest
+    timeout-minutes: 150
+    
+    permissions:
+      contents: read
+      actions: write
+    steps:
+      - name: Debug Time
+        run: date
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Pull Docker image
+        run: docker pull ${{ secrets.DOCKER_IMAGE }}
+      - name: Run Docker container
+        run: docker run -v ${{ github.workspace }}:/app ${{ secrets.DOCKER_IMAGE }}
